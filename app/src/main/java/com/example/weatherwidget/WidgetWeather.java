@@ -44,7 +44,7 @@ public class WidgetWeather extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         Log.d("widget_test", "onUpdate");
-
+        //Создаются объекты RemoteViews и ComponentName. RemoteViews используется для управления макетом виджета, а ComponentName представляет имя класса виджета.
         RemoteViews remoteViews;
         ComponentName watchWidget;
 
@@ -57,14 +57,17 @@ public class WidgetWeather extends AppWidgetProvider {
         WeatherData weatherdata = new WeatherData(context);
 
         for (int appWidgetId : appWidgetIds) {
-            // Показываем прелоудер
+            //Устанавливается видимость прелоадера
             remoteViews.setViewVisibility(R.id.loading_indicator, View.VISIBLE);
+            //Устанавливается видимость содержимого виджета
             remoteViews.setViewVisibility(R.id.widget_content, View.GONE);
+            //Обновляется виджет с помощью менеджера виджетов
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
 
             weatherdata.setOnDownloadedWeather(jsonString -> {
                 setWeather(jsonString, context);
                 // Скрываем прелоудер после обновления
+                //Устанавливается слушатель для события загрузки данных о погоде. Когда данные загружены, выполняется код внутри лямбда-выражения.
                 remoteViews.setViewVisibility(R.id.loading_indicator, View.GONE);
                 remoteViews.setViewVisibility(R.id.widget_content, View.VISIBLE);
                 appWidgetManager.updateAppWidget(appWidgetId, remoteViews);

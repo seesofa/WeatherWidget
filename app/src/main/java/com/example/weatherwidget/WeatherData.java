@@ -24,10 +24,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class WeatherData {
-    private final String key = "55a3af89290138723eaaefa9572f8bc7";
+    private final String key = "8cf8d8ac4ce5c3a63d7418d7a01cd973";
     OnDownloadedWeather onDownloadedWeather;
-
-
     private Context context;
 
     public WeatherData(Context context) {
